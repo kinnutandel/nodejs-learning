@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-learning",
+  "version": "1.0.0",
+  "description": "this is nodejs learning project",
+  "license": "ISC",
+  "author": "kinnu tandel",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.2",
+    "cjs": "^0.0.11",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^5.0.0",
+    "csurf": "^1.11.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
+    "express-session": "^1.19.0",
+    "mongodb": "^7.2.0",
+    "mongoose": "^8.24.0",
+    "mysql2": "^3.22.4",
+    "nodemailer": "^8.0.11",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "pug": "^3.0.4",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
