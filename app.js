@@ -39,18 +39,6 @@ app.use(
         store: store
     })
 );
-// app.use(
-//     session({
-//         secret: 'my secret',
-//         resave: false,
-//         saveUninitialized: false,
-//         store: store,
-//         cookie: {
-//             maxAge: 1000 * 60 * 60 * 24, // 1 day
-//             httpOnly: true
-//         }
-//     })
-// );
 app.use(csrfProtection);
 app.use(flash());
 
