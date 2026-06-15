@@ -1,6 +1,7 @@
 const { ValidationError } = require('sequelize');
 const Product = require('../models/product');
 const { validationResult } = require('express-validator');
+const mongoose = require('mongoose');
 
 exports.getAddProduct =  (req, res, next) => {
 
@@ -20,10 +21,8 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
-
     const errors = validationResult(req);
 
-    console.log("errors.array() :", errors.array());
     if(!errors.isEmpty()) {
 
         return res.status(422).render('admin/edit-product', {
@@ -57,7 +56,11 @@ exports.postAddProduct = (req, res, next) => {
         .then(result => {
             res.redirect('/admin/products');
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };
 
 exports.getProducts = (req, res, next) => {
@@ -74,7 +77,11 @@ exports.getProducts = (req, res, next) => {
             //isAuthenticated: req.session.isLoggedIn
         });
     })
-    .catch(err => console.log(err)); 
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }); 
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -105,27 +112,11 @@ exports.getEditProduct = (req, res, next) => {
             validationErrors: []
         });
     })
-    .catch(err => console.log(err));
-
-    // Product.findById(prodId)
-    // .then(product => {
-
-    //     if (!product) {
-    //         return res.redirect('/');
-    //     }
-
-    //     res.render('admin/edit-product', {
-    //         product: product, 
-    //         pageTitle: 'Edit product', 
-    //         path: '/products',
-    //         editing: editMode,
-    //         //isAuthenticated: req.session.isLoggedIn
-    //         hasError: false,
-    //         errorMessage: null
-    //     });
-
-    // })
-    // .catch(err => console.log(err))
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 };
 
 exports.postEditProduct = (req, res, next) => {
@@ -177,26 +168,11 @@ exports.postEditProduct = (req, res, next) => {
         .then(() => {
             res.redirect('/admin/products');
         })
-        .catch(err => console.log(err));
-
-    // Product
-    //     .findById(prodId)
-    //     .then(product => {
-    //         if(product.userId.toString() !== req.user._id.toString()) {
-    //             return res.redirect('/');
-    //         }
-    //         product.title = updatedTitle;
-    //         product.price = updatedPrice;
-    //         product.description = updatedDescription;
-    //         product.imageUrl = updatedImageUrl;
-
-    //         return product
-    //             .save()
-    //             .then(result => {
-    //                 res.redirect('/admin/products');
-    //             })
-    //     })
-    //     .catch(err => console.error(err));
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };
 
 exports.postDeleteProduct = (req, res, next) => {
@@ -207,5 +183,9 @@ exports.postDeleteProduct = (req, res, next) => {
         .then(() => {
             res.redirect('/admin/products');
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };
