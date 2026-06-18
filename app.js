@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+console.log('ENV CHECK:', process.env.STRIPE_KEY1);
+console.log('ENV CHECK 2:', process.env.STRIPE_KEY2);
 const path = require('path');
 const http = require('http');
 const express = require('express');
