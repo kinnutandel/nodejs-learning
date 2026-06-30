@@ -30,3 +30,6 @@ This will teach you all of that! From scratch with zero prior knowledge assumed.
 25. Deploying a Node.js Application
 26. Using TypeScript with Node.js
 27. Exploring Deno.js
+
+
+live app url : https://nodejs-learning-846dcb52950f.herokuapp.com
